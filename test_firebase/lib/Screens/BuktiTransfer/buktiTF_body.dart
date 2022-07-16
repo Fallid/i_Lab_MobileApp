@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:intl/intl.dart';
 import 'package:test_firebase/Screens/Alert/alert_false_popup.dart';
 import 'package:test_firebase/Screens/Alert/alert_true_pop.dart';
 import 'package:test_firebase/Screens/Cart/cart_page.dart';
@@ -25,6 +26,8 @@ class UploadImageScreen extends StatefulWidget {
 
 // GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 final databaseRef = FirebaseDatabase.instance.reference();
+String tanggal = DateFormat("dd-MM-yyyy").format(DateTime.now());
+var tanggalDB = tanggal;
 
 class _UploadImageScreenState extends State<UploadImageScreen> {
   FirebaseStorage firebaseStorage = FirebaseStorage.instance;
@@ -332,6 +335,7 @@ class _UploadImageScreenState extends State<UploadImageScreen> {
                             'isOrder': true,
                             'ukuran': selectedItem,
                             'jumlah': 1,
+                            'tanggal': tanggalDB,
                           });
                           var ref = FirebaseDatabase.instance
                               .reference()
